@@ -1,0 +1,1683 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="SkLearn2PMML package" version="0.99.1"/>
+		<Timestamp>2023-11-02T18:41:30Z</Timestamp>
+	</Header>
+	<MiningBuildTask>
+		<Extension name="repr">PMMLPipeline(steps=[('lgb', LGBMRegressor(n_estimators=500, objective='regression_l1', verbose=-1))])</Extension>
+	</MiningBuildTask>
+	<DataDictionary>
+		<DataField name="target" optype="continuous" dataType="double"/>
+		<DataField name="ODI" optype="continuous" dataType="double"/>
+		<DataField name="PT" optype="continuous" dataType="double"/>
+		<DataField name="PI-LL" optype="continuous" dataType="double"/>
+	</DataDictionary>
+	<MiningModel functionName="regression" algorithmName="LightGBM">
+		<MiningSchema>
+			<Extension name="X-FeatureImportances">
+				<InlineTable>
+					<Extension name="numberOfImportances" value="3"/>
+					<Extension name="numberOfNonZeroImportances" value="3"/>
+					<Extension name="sumOfImportances" value="227.0"/>
+					<Extension name="minImportance" value="47.0"/>
+					<Extension name="maxImportance" value="95.0"/>
+					<row>
+						<data:name>PI-LL</data:name>
+						<data:importance>85.0</data:importance>
+					</row>
+					<row>
+						<data:name>ODI</data:name>
+						<data:importance>95.0</data:importance>
+					</row>
+					<row>
+						<data:name>PT</data:name>
+						<data:importance>47.0</data:importance>
+					</row>
+				</InlineTable>
+			</Extension>
+			<MiningField name="target" usageType="target"/>
+			<MiningField name="ODI" importance="95.0"/>
+			<MiningField name="PT" importance="47.0"/>
+			<MiningField name="PI-LL" importance="85.0"/>
+		</MiningSchema>
+		<Segmentation multipleModelMethod="sum" missingPredictionTreatment="returnMissing">
+			<Segment id="1">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="9.204999995231628">
+						<True/>
+						<Node score="10.7">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="12.1"/>
+							<Node score="11.5">
+								<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+							</Node>
+							<Node score="9.85">
+								<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="2">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-1.0204999995231627">
+						<True/>
+						<Node score="0.27950000047683726">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+							<Node score="1.0000000381469727">
+								<SimplePredicate field="PT" operator="greaterThan" value="26.500000000000004"/>
+							</Node>
+							<Node score="-0.08499999999999996">
+								<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="3">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.9184499995708466">
+						<True/>
+						<Node score="0.3515500004291536">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+							<Node score="1.2542499980926516">
+								<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+							</Node>
+							<Node score="-0.08500000381469733">
+								<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="4">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.826604999613762">
+						<True/>
+						<Node score="1.1288249982833862">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+						</Node>
+						<Node score="-0.11799999961853036">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+							<Node score="0.4584224791884423">
+								<SimplePredicate field="PT" operator="greaterThan" value="22.500000000000004"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="5">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.7439444996523857">
+						<True/>
+						<Node score="1.0159424984550476">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+						</Node>
+						<Node score="0.3281950003480912">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+							<Node score="-0.12234225135207187">
+								<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="6">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.6695500496871472">
+						<True/>
+						<Node score="0.914348248609543">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+						</Node>
+						<Node score="0.4882332519557478">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+							<Node score="-0.1439657745214701">
+								<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="7">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+					</MiningSchema>
+					<Node score="-0.09259505425517559">
+						<True/>
+						<Node score="0.3473598466992142">
+							<SimplePredicate field="PT" operator="greaterThan" value="21.500000000000004"/>
+							<Node score="0.41353857221611734">
+								<SimplePredicate field="ODI" operator="greaterThan" value="73.00000000000001"/>
+							</Node>
+						</Node>
+						<Node score="-0.22956919706932305">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="8">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.5933355392929148">
+						<True/>
+						<Node score="0.7848685028028222">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+						</Node>
+						<Node score="0.2558116805432249">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+							<Node score="-0.13706530598632938">
+								<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="9">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.3632649780833738">
+						<True/>
+						<Node score="0.6807305120120652">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="16.500000000000004"/>
+							<Node score="0.007094253236242132">
+								<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+							</Node>
+						</Node>
+						<Node score="-0.22465648612549574">
+							<SimplePredicate field="ODI" operator="greaterThan" value="46.33500000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="10">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.497675487555286">
+						<True/>
+						<Node score="0.14586753950452724">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+							<Node score="0.6725193744037389">
+								<SimplePredicate field="PT" operator="greaterThan" value="26.500000000000004"/>
+							</Node>
+							<Node score="-0.193615172087382">
+								<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="11">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.44790793879975743">
+						<True/>
+						<Node score="0.598070706860406">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="16.500000000000004"/>
+							<Node score="0.025746345121356207">
+								<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+							</Node>
+						</Node>
+						<Node score="-0.05527903771601217">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="12">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.4031171449197817">
+						<True/>
+						<Node score="0.5382636361743653">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="16.500000000000004"/>
+							<Node score="0.0231717106092205">
+								<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+							</Node>
+						</Node>
+						<Node score="-0.049751133944410955">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="13">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.36280543042780344">
+						<True/>
+						<Node score="0.6768352115100402">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+						</Node>
+						<Node score="0.14861242431704155">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+							<Node score="-0.0791454604517016">
+								<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="14">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.3044073135706916">
+						<True/>
+						<Node score="-0.14852263243274264">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="0.005389231909238391">
+								<SimplePredicate field="PI-LL" operator="greaterThan" value="12.1"/>
+								<Node score="0.5793045693228003">
+									<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+								</Node>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="15">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.21167262414174887">
+						<True/>
+						<Node score="0.5799170002974344">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+						</Node>
+						<Node score="-0.17176983759745515">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="0.15800140704338814">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="16">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+					</MiningSchema>
+					<Node score="-0.28184731821167297">
+						<True/>
+						<Node score="0.14220126633904934">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="-0.1545928538377096">
+								<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+								<Node score="0.2709491291478832">
+									<SimplePredicate field="PT" operator="greaterThan" value="23.450000000000003"/>
+								</Node>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="17">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.24673216179261176">
+						<True/>
+						<Node score="0.06994948770060026">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+							<Node score="0.26994753190490556">
+								<SimplePredicate field="PT" operator="greaterThan" value="22.500000000000004"/>
+							</Node>
+							<Node score="-0.13913356845393868">
+								<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="18">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.2220589456133506">
+						<True/>
+						<Node score="0.4844770913205473">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="16.500000000000004"/>
+							<Node score="-0.011447720747862534">
+								<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+							</Node>
+						</Node>
+						<Node score="-0.044271447742309095">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="19">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.19985305105201556">
+						<True/>
+						<Node score="0.4360293821884925">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="16.500000000000004"/>
+							<Node score="-0.010302948673076174">
+								<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+							</Node>
+						</Node>
+						<Node score="-0.03984430296807817">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="20">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.1378610725156811">
+						<True/>
+						<Node score="0.2851994418850758">
+							<SimplePredicate field="PT" operator="greaterThan" value="26.500000000000004"/>
+						</Node>
+						<Node score="-0.12304514466645103">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="0.10012133152865915">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="21">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.16608163869524586">
+						<True/>
+						<Node score="0.38241431081677746">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="16.500000000000004"/>
+							<Node score="0.0030318606608766177">
+								<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+							</Node>
+						</Node>
+						<Node score="-0.045872005824136246">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="22">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+					</MiningSchema>
+					<Node score="0.1441728797350997">
+						<True/>
+						<Node score="0.2588215049547312">
+							<SimplePredicate field="PT" operator="greaterThan" value="26.500000000000004"/>
+						</Node>
+						<Node score="-0.11104381626589355">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="-0.019498657292157343">
+							<SimplePredicate field="PT" operator="greaterThan" value="18.500000000000004"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="23">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.16389076279923126">
+						<True/>
+						<Node score="-0.007068470602711586">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="16.500000000000004"/>
+							<Node score="0.42358347338806335">
+								<SimplePredicate field="PT" operator="greaterThan" value="26.500000000000004"/>
+							</Node>
+						</Node>
+						<Node score="-0.0475185163638697">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="24">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.042766664727482785">
+						<True/>
+						<Node score="0.2761554415406008">
+							<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+						</Node>
+						<Node score="-0.14923258757903302">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="0.3304624388218608">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="16.500000000000004"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="25">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+					</MiningSchema>
+					<Node score="0.09741619493967485">
+						<True/>
+						<Node score="0.22373606922337413">
+							<SimplePredicate field="PT" operator="greaterThan" value="26.500000000000004"/>
+						</Node>
+						<Node score="-0.08430932882112972">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="-0.008520273453806482">
+							<SimplePredicate field="PT" operator="greaterThan" value="18.500000000000004"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="26">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.049779850072436155">
+						<True/>
+						<Node score="0.2569708302686537">
+							<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+						</Node>
+						<Node score="-0.12587839593901676">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="0.28767457544570724">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="16.500000000000004"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="27">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+					</MiningSchema>
+					<Node score="-0.15491907913117764">
+						<True/>
+						<Node score="0.18708058289055385">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="-0.06329055634511507">
+								<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+								<Node score="0.10666177636142216">
+									<SimplePredicate field="PT" operator="greaterThan" value="23.450000000000003"/>
+								</Node>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="28">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.04640994025316134">
+						<True/>
+						<Node score="0.22910518624097298">
+							<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+						</Node>
+						<Node score="-0.10696150071060356">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="0.2583297784845936">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="16.500000000000004"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="29">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+					</MiningSchema>
+					<Node score="-0.13478617719274374">
+						<True/>
+						<Node score="0.1396135423586009">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="-0.14626535063954318">
+								<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+								<Node score="0.15011172293069583">
+									<SimplePredicate field="PT" operator="greaterThan" value="23.450000000000003"/>
+								</Node>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="30">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.07699448638012679">
+						<True/>
+						<Node score="0.16836118442441111">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="18.700000000000006"/>
+							<Node score="-0.02876834543989437">
+								<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.07572919507363718">
+							<SimplePredicate field="PT" operator="greaterThan" value="18.500000000000004"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="31">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.03437413041344988">
+						<True/>
+						<Node score="0.2112272260279947">
+							<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+						</Node>
+						<Node score="-0.08861845752481474">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="0.20169932795783296">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="16.500000000000004"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="32">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.1101706977941117">
+						<True/>
+						<Node score="0.12587288840796748">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="0.024926435792085668">
+								<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+								<Node score="-0.039613088265548504">
+									<SimplePredicate field="PI-LL" operator="greaterThan" value="26.500000000000004"/>
+								</Node>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="33">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.09915362801470054">
+						<True/>
+						<Node score="0.11328559956717062">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="0.022433792212877092">
+								<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+								<Node score="-0.03565177943899363">
+									<SimplePredicate field="PI-LL" operator="greaterThan" value="26.500000000000004"/>
+								</Node>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="34">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.08230784061533657">
+						<True/>
+						<Node score="0.45104903733371987">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+						</Node>
+						<Node score="-0.03921253832918917">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="0.0914001090532227">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="35">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.08793790574959076">
+						<True/>
+						<Node score="0.18928973445761763">
+							<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+						</Node>
+						<Node score="-0.04136283084552699">
+							<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+						</Node>
+						<Node score="0.12276579669840314">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="36">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.06528326597884382">
+						<True/>
+						<Node score="0.3943582595131414">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+						</Node>
+						<Node score="-0.035944160209048406">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="0.06998351847806017">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="37">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.05875493938095944">
+						<True/>
+						<Node score="0.35492243356182734">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+						</Node>
+						<Node score="-0.03234974418814356">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="0.06298516663025407">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="38">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.06674029463865135">
+						<True/>
+						<Node score="0.1755199714723509">
+							<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+						</Node>
+						<Node score="-0.06691838129886306">
+							<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+						</Node>
+						<Node score="0.0971923485177312">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="39">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.06006626517478622">
+						<True/>
+						<Node score="-0.06022654316897681">
+							<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+							<Node score="0.1579679743251158">
+								<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+							</Node>
+						</Node>
+						<Node score="0.08747311366595821">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="40">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.0540596386573076">
+						<True/>
+						<Node score="-0.027343030629452425">
+							<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+							<Node score="0.12625961727484034">
+								<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+							</Node>
+						</Node>
+						<Node score="0.07872580229936244">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="41">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.04865367479157684">
+						<True/>
+						<Node score="-0.05163883700655558">
+							<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+							<Node score="0.13722534756033494">
+								<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+							</Node>
+						</Node>
+						<Node score="0.07085322206942611">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="42">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="0.002904826949781558">
+						<True/>
+						<Node score="-0.0017256401376577913">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="24.500000000000004"/>
+							<Node score="0.25973289914238046">
+								<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.08846464689306864">
+							<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="43">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="0.0026143442548033136">
+						<True/>
+						<Node score="-0.0015530761238920832">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="24.500000000000004"/>
+							<Node score="0.23375960922814232">
+								<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.07961818220376174">
+							<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="44">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.05327261215990373">
+						<True/>
+						<Node score="-0.0368062459441955">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="0.10363076181930425">
+								<SimplePredicate field="PI-LL" operator="greaterThan" value="18.700000000000006"/>
+								<Node score="-0.001397768511503017">
+									<SimplePredicate field="PI-LL" operator="greaterThan" value="26.500000000000004"/>
+								</Node>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="45">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.04794535094391336">
+						<True/>
+						<Node score="0.05815863363399246">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="0.004957093986764605">
+								<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+								<Node score="-0.1570466502468186">
+									<SimplePredicate field="PI-LL" operator="greaterThan" value="28.500000000000004"/>
+								</Node>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="46">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="0.005537825025066035">
+						<True/>
+						<Node score="0.01958531857446859">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="24.500000000000004"/>
+							<Node score="0.2221274917655756">
+								<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.06847144878764251">
+							<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="47">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.040004134661393194">
+						<True/>
+						<Node score="-0.0394952672156818">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="-0.03138214275811251">
+								<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+							</Node>
+							<Node score="0.06198887823649244">
+								<SimplePredicate field="PI-LL" operator="greaterThan" value="18.700000000000006"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="48">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+					</MiningSchema>
+					<Node score="-0.03600372119525387">
+						<True/>
+						<Node score="0.03357694410907754">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="-0.0732016950283871">
+								<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+								<Node score="0.10810182108773417">
+									<SimplePredicate field="PT" operator="greaterThan" value="23.450000000000003"/>
+								</Node>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="49">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.0026282440011133447">
+						<True/>
+						<Node score="0.01874806839621117">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="24.500000000000004"/>
+							<Node score="0.19224277475605583">
+								<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.0658815255255484">
+							<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="50">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.04285467266585745">
+						<True/>
+						<Node score="6.728871332318143E-4">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="24.500000000000004"/>
+							<Node score="0.177119095696035">
+								<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+							</Node>
+						</Node>
+						<Node score="0.004813438331165588">
+							<SimplePredicate field="ODI" operator="greaterThan" value="49.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="51">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.02262313337264076">
+						<True/>
+						<Node score="0.03284557959271091">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="18.700000000000006"/>
+							<Node score="-0.031239928763490445">
+								<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.054515277425902654">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="52">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.020360820035376682">
+						<True/>
+						<Node score="0.007890670148727885">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="4.099999999999999"/>
+							<Node score="0.059131339828165964">
+								<SimplePredicate field="PT" operator="greaterThan" value="23.450000000000003"/>
+							</Node>
+							<Node score="-0.03007021774929495">
+								<SimplePredicate field="PI-LL" operator="greaterThan" value="23.800000000000004"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="53">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.034088777365012056">
+						<True/>
+						<Node score="3.2806223556711703E-4">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="24.500000000000004"/>
+							<Node score="0.15661804501996388">
+								<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+							</Node>
+						</Node>
+						<Node score="0.006371681295607301">
+							<SimplePredicate field="ODI" operator="greaterThan" value="49.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="54">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.02139154873838882">
+						<True/>
+						<Node score="0.016425870152230983">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="0.0033798455081523572">
+								<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+								<Node score="-0.22661383488532963">
+									<SimplePredicate field="PI-LL" operator="greaterThan" value="28.500000000000004"/>
+								</Node>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="55">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+					</MiningSchema>
+					<Node score="-3.8728658728182097E-4">
+						<True/>
+						<Node score="-0.040173468571404206">
+							<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+						</Node>
+						<Node score="0.03065145069748927">
+							<SimplePredicate field="ODI" operator="greaterThan" value="49.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="56">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+					</MiningSchema>
+					<Node score="-3.485579285538165E-4">
+						<True/>
+						<Node score="-0.03615612171426379">
+							<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+						</Node>
+						<Node score="0.027586305627740296">
+							<SimplePredicate field="ODI" operator="greaterThan" value="49.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="57">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+					</MiningSchema>
+					<Node score="0.05379780409320772">
+						<True/>
+						<Node score="0.012580595514920391">
+							<SimplePredicate field="PT" operator="greaterThan" value="23.450000000000003"/>
+						</Node>
+						<Node score="-0.0469858958066407">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="0.001537006788249018">
+							<SimplePredicate field="ODI" operator="greaterThan" value="42.11000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="58">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+					</MiningSchema>
+					<Node score="-4.6740281452350985E-4">
+						<True/>
+						<Node score="-0.027841919962173348">
+							<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+						</Node>
+						<Node score="0.029526264645630285">
+							<SimplePredicate field="ODI" operator="greaterThan" value="49.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="59">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.024256735967814927">
+						<True/>
+						<Node score="0.03158173792953685">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="18.700000000000006"/>
+							<Node score="-0.004120541055226745">
+								<SimplePredicate field="PI-LL" operator="greaterThan" value="26.500000000000004"/>
+							</Node>
+						</Node>
+						<Node score="-0.011711211534720323">
+							<SimplePredicate field="ODI" operator="greaterThan" value="44.220000000000006"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="60">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="0.0034764414252814292">
+						<True/>
+						<Node score="-0.003708486949704071">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="24.500000000000004"/>
+							<Node score="0.17318876958531534">
+								<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.04266128802271299">
+							<SimplePredicate field="ODI" operator="greaterThan" value="59.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="61">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.011986604356344034">
+						<True/>
+						<Node score="0.09078869273605267">
+							<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+						</Node>
+						<Node score="-0.007142878712783563">
+							<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+						</Node>
+						<Node score="0.04298498413278384">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="62">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+					</MiningSchema>
+					<Node score="0.04427329873578323">
+						<True/>
+						<Node score="0.08170982346244743">
+							<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+						</Node>
+						<Node score="-0.021070837612147175">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="-0.013897383365823225">
+							<SimplePredicate field="PT" operator="greaterThan" value="21.500000000000004"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="63">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.015215273794287954">
+						<True/>
+						<Node score="0.007538312416429882">
+							<SimplePredicate field="ODI" operator="greaterThan" value="49.00000000000001"/>
+							<Node score="-0.05666998715184919">
+								<SimplePredicate field="PI-LL" operator="greaterThan" value="26.500000000000004"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="64">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+					</MiningSchema>
+					<Node score="-0.013693746414859154">
+						<True/>
+						<Node score="0.030537463950496682">
+							<SimplePredicate field="ODI" operator="greaterThan" value="49.00000000000001"/>
+							<Node score="-0.01971758509257543">
+								<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="65">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.025265053355047175">
+						<True/>
+						<Node score="0.03068183340311741">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="18.700000000000006"/>
+							<Node score="-0.013510171428083018">
+								<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.007197243992011782">
+							<SimplePredicate field="ODI" operator="greaterThan" value="44.220000000000006"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="66">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.011604647374172062">
+						<True/>
+						<Node score="0.07900255413323612">
+							<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+						</Node>
+						<Node score="-0.007314515256541832">
+							<SimplePredicate field="ODI" operator="greaterThan" value="56.57000000000001"/>
+						</Node>
+						<Node score="0.03643851314071469">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="9.800000000000002"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="67">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+					</MiningSchema>
+					<Node score="0.04161952490455221">
+						<True/>
+						<Node score="0.0711022987199125">
+							<SimplePredicate field="ODI" operator="greaterThan" value="84.00000000000001"/>
+						</Node>
+						<Node score="0.013136512311645277">
+							<SimplePredicate field="PT" operator="greaterThan" value="23.450000000000003"/>
+						</Node>
+						<Node score="-0.010656373178717616">
+							<SimplePredicate field="ODI" operator="greaterThan" value="44.220000000000006"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="68">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.023314833377866863">
+						<True/>
+						<Node score="0.13259933008887012">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+						</Node>
+						<Node score="-0.03120775433399983">
+							<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+						</Node>
+						<Node score="0.02265614751756928">
+							<SimplePredicate field="ODI" operator="greaterThan" value="49.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="69">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="0.00940093760212244">
+						<True/>
+						<Node score="0.1193393970799832">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="33.00000000000001"/>
+						</Node>
+						<Node score="-0.007047061981096403">
+							<SimplePredicate field="ODI" operator="greaterThan" value="44.220000000000006"/>
+							<Node score="0.005116043393036663">
+								<SimplePredicate field="PT" operator="greaterThan" value="23.450000000000003"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="70">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="0.10078126701530579">
+						<True/>
+						<Node score="0.013214250658055171">
+							<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+						</Node>
+						<Node score="-0.014940370874659515">
+							<SimplePredicate field="ODI" operator="greaterThan" value="61.00000000000001"/>
+						</Node>
+						<Node score="-0.006554546324949229">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="12.1"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="71">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="1.6492471981779944E-4">
+						<True/>
+						<Node score="-8.448801888958357E-4">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="18.700000000000006"/>
+							<Node score="0.10608403230617931">
+								<SimplePredicate field="PT" operator="greaterThan" value="23.450000000000003"/>
+							</Node>
+						</Node>
+						<Node score="-0.07178889649950258">
+							<SimplePredicate field="PT" operator="greaterThan" value="18.500000000000004"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="72">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.01141207855212313">
+						<True/>
+						<Node score="-0.034619645303048154">
+							<SimplePredicate field="PT" operator="greaterThan" value="16.050000000000004"/>
+							<Node score="0.0067201327608746204">
+								<SimplePredicate field="PI-LL" operator="greaterThan" value="12.1"/>
+								<Node score="-0.013259338243080522">
+									<SimplePredicate field="ODI" operator="greaterThan" value="67.33500000000002"/>
+								</Node>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="73">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.015295767101286807">
+						<True/>
+						<Node score="0.0075511706763145454">
+							<SimplePredicate field="ODI" operator="greaterThan" value="49.00000000000001"/>
+							<Node score="-0.05640151727936447">
+								<SimplePredicate field="PI-LL" operator="greaterThan" value="26.500000000000004"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="74">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="0.032204372034429475">
+						<True/>
+						<Node score="0.004367298052309821">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="24.500000000000004"/>
+							<Node score="0.1294923925337856">
+								<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.004336718910964893">
+							<SimplePredicate field="ODI" operator="greaterThan" value="39.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="75">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="0.02898393483098659">
+						<True/>
+						<Node score="0.00393056824707898">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="24.500000000000004"/>
+							<Node score="0.1165431532804071">
+								<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.003903047019868317">
+							<SimplePredicate field="ODI" operator="greaterThan" value="39.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="76">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="-0.012942213798074809">
+						<True/>
+						<Node score="0.007620030201766448">
+							<SimplePredicate field="ODI" operator="greaterThan" value="49.00000000000001"/>
+							<Node score="-0.051591152181366784">
+								<SimplePredicate field="PI-LL" operator="greaterThan" value="26.500000000000004"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="77">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="0.027379762727695357">
+						<True/>
+						<Node score="0.008696626640507788">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="24.500000000000004"/>
+							<Node score="0.11004795317050303">
+								<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.0026010914154640298">
+							<SimplePredicate field="ODI" operator="greaterThan" value="39.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="78">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="ODI"/>
+						<MiningField name="PT"/>
+						<MiningField name="PI-LL"/>
+					</MiningSchema>
+					<Node score="0.024641786454925887">
+						<True/>
+						<Node score="0.00782696397645708">
+							<SimplePredicate field="PI-LL" operator="greaterThan" value="24.500000000000004"/>
+							<Node score="0.0990431578534527">
+								<SimplePredicate field="PT" operator="greaterThan" value="24.650000000000002"/>
+							</Node>
+						</Node>
+						<Node score="-0.0023409822739176357">
+							<SimplePredicate field="ODI" operator="greaterThan" value="39.00000000000001"/>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+		</Segmentation>
+	</MiningModel>
+</PMML>
