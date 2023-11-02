@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="SkLearn2PMML package" version="0.99.1"/>
+		<Timestamp>2023-11-02T18:59:15Z</Timestamp>
+	</Header>
+	<MiningBuildTask>
+		<Extension name="repr">PMMLPipeline(steps=[('lgb', LGBMRegressor(n_estimators=500, objective='regression_l1', verbose=-1))])</Extension>
+	</MiningBuildTask>
+	<DataDictionary>
+		<DataField name="target" optype="continuous" dataType="double"/>
+		<DataField name="SS" optype="continuous" dataType="double"/>
+		<DataField name="LL" optype="continuous" dataType="double"/>
+	</DataDictionary>
+	<MiningModel functionName="regression" algorithmName="LightGBM">
+		<MiningSchema>
+			<Extension name="X-FeatureImportances">
+				<InlineTable>
+					<Extension name="numberOfImportances" value="2"/>
+					<Extension name="numberOfNonZeroImportances" value="2"/>
+					<Extension name="sumOfImportances" value="12.0"/>
+					<Extension name="minImportance" value="2.0"/>
+					<Extension name="maxImportance" value="10.0"/>
+					<row>
+						<data:name>SS</data:name>
+						<data:importance>2.0</data:importance>
+					</row>
+					<row>
+						<data:name>LL</data:name>
+						<data:importance>10.0</data:importance>
+					</row>
+				</InlineTable>
+			</Extension>
+			<MiningField name="target" usageType="target"/>
+			<MiningField name="SS" importance="2.0"/>
+			<MiningField name="LL" importance="10.0"/>
+		</MiningSchema>
+		<Segmentation multipleModelMethod="sum" missingPredictionTreatment="returnMissing">
+			<Segment id="1">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="SS"/>
+						<MiningField name="LL"/>
+					</MiningSchema>
+					<Node score="40.439998626708984">
+						<True/>
+						<Node score="41.939998626708984">
+							<SimplePredicate field="LL" operator="greaterThan" value="34.20000000000001"/>
+							<Node score="42.97999858856201">
+								<SimplePredicate field="SS" operator="greaterThan" value="34.50000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="2">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="SS"/>
+						<MiningField name="LL"/>
+					</MiningSchema>
+					<Node score="-1.0439998626708984">
+						<True/>
+						<Node score="0.3060001373291016">
+							<SimplePredicate field="LL" operator="greaterThan" value="34.20000000000001"/>
+							<Node score="1.2420001029968262">
+								<SimplePredicate field="SS" operator="greaterThan" value="34.50000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="3">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="LL"/>
+					</MiningSchema>
+					<Node score="-0.9395998764038084">
+						<True/>
+						<Node score="0.17780013084411622">
+							<SimplePredicate field="LL" operator="greaterThan" value="34.20000000000001"/>
+							<Node score="1.1178000926971436">
+								<SimplePredicate field="LL" operator="greaterThan" value="47.50000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="4">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="LL"/>
+					</MiningSchema>
+					<Node score="-0.8456398887634272">
+						<True/>
+						<Node score="0.16002011775970432">
+							<SimplePredicate field="LL" operator="greaterThan" value="34.20000000000001"/>
+							<Node score="1.006020083427429">
+								<SimplePredicate field="LL" operator="greaterThan" value="47.50000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="5">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="LL"/>
+					</MiningSchema>
+					<Node score="-0.7610758998870844">
+						<True/>
+						<Node score="0.1440181059837336">
+							<SimplePredicate field="LL" operator="greaterThan" value="34.20000000000001"/>
+							<Node score="0.9054180750846861">
+								<SimplePredicate field="LL" operator="greaterThan" value="47.50000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+			<Segment id="6">
+				<True/>
+				<TreeModel functionName="regression" noTrueChildStrategy="returnLastPrediction">
+					<MiningSchema>
+						<MiningField name="LL"/>
+					</MiningSchema>
+					<Node score="-0.6849683098983761">
+						<True/>
+						<Node score="0.12961629538536032">
+							<SimplePredicate field="LL" operator="greaterThan" value="34.20000000000001"/>
+							<Node score="0.8148762675762171">
+								<SimplePredicate field="LL" operator="greaterThan" value="47.50000000000001"/>
+							</Node>
+						</Node>
+					</Node>
+				</TreeModel>
+			</Segment>
+		</Segmentation>
+	</MiningModel>
+</PMML>
